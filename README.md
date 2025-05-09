@@ -1,59 +1,111 @@
-# Geocalc3dFrontend
+# 3D-Geometrie Visualizer – Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.11.
+Ein Angular-Frontend zur Eingabe, Berechnung und 3D-Visualisierung von geometrischen Figuren in Verbindung mit dem Spring Boot Backend (Modul 295).
 
-## Development server
+---
 
-To start a local development server, run:
+## 🧠 Projektidee
+
+Benutzer:innen können verschiedene 3D-Formen wie Kugeln, Quader, Kegel oder Pyramiden auswählen und deren mathematische Eigenschaften (Volumen, Oberfläche etc.) berechnen lassen. Die Ergebnisse werden zusätzlich in 3D visualisiert. Das Frontend kommuniziert über REST mit dem bestehenden Backend.
+
+---
+
+## ⚙️ Technologien
+
+- Angular (v16+)
+- Angular Material
+- TypeScript / SCSS
+- Three.js (für 3D-Visualisierung)
+- angular-oauth2-oidc (für Login)
+- GitHub
+- Jasmine & Karma (Unit-Tests)
+
+---
+
+## 🔐 Rollen & Zugriff
+
+- **USER**: Kann Figuren eingeben, berechnen und visualisieren
+- **ADMIN**: Sieht zusätzlich alle gespeicherten Berechnungen & Diagramme im Dashboard
+
+---
+
+## 🧩 Hauptkomponenten
+
+| Komponente               | Zweck                                                         |
+|--------------------------|---------------------------------------------------------------|
+| `LoginComponent`         | Login via Keycloak                                            |
+| `ShapeInputComponent`    | Eingabe von Parametern je nach gewählter Figur                |
+| `CalculationComponent`   | Darstellung von Volumen/Oberfläche etc.                       |
+| `Shape3DViewComponent`   | Echtzeit-Visualisierung der Formen mit Three.js              |
+| `ResultsComponent`       | Anzeige bisheriger Berechnungen                              |
+| `AdminDashboardComponent`| Statistik & Verlauf (nur Admin)                              |
+| `NavigationComponent`    | Menü, Routing, Rollenprüfung                                 |
+| `NotFoundComponent`      | Fehlerseite für ungültige Pfade                              |
+
+---
+
+## 🔗 Backend-Anbindung (REST)
+
+Das Frontend nutzt Angular Services für HTTP-Zugriffe mit OAuth2-Token.
+
+| Endpoint          | Methode   | Beschreibung                             | Rolle         |
+|-------------------|-----------|------------------------------------------|---------------|
+| `/api/shapes`     | POST      | Figur speichern                          | USER / ADMIN  |
+| `/api/calculate`  | POST      | Werte berechnen lassen                   | USER          |
+| `/api/results`    | GET       | Liste aller Berechnungen                 | ADMIN         |
+
+---
+
+## 🚀 Projektziel
+
+- Umsetzung der Anforderungen des Moduls 294
+- 8+ Angular-Komponenten
+- Keycloak Login + Rollenhandling
+- 3D-Visualisierung (Three.js)
+- Frontend-Tests
+- Klare Trennung von USER/ADMIN-Oberflächen
+
+---
+
+## 📂 Projektstruktur (Frontend)
+```
+src/
+├── app/
+│ ├── components/
+│ │ ├── login/
+│ │ ├── shape-input/
+│ │ ├── shape-3d-view/
+│ │ ├── calculation/
+│ │ ├── results/
+│ │ └── admin-dashboard/
+│ ├── services/
+│ ├── guards/
+│ ├── interceptors/
+│ └── app-routing.module.ts
+├── assets/
+└── environments/
+```
+
+---
+
+## 🧪 Unit-Tests
+
+- Komponenten: z. B. `ShapeInputComponent`, `ResultsComponent`
+- Services: HTTP-Kommunikation + Mock-Login
+- Getestet mit Jasmine & Karma
+
+---
+
+## 🔧 Setup & Start
 
 ```bash
+npm install
 ng serve
-```
+````
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+🧑‍💻 Autor
+Peter Ngo
+Kurs: 23-294-F
+Projektarbeit ÜK 294
