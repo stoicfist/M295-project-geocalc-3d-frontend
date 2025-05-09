@@ -1,0 +1,155 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=darkgreen]{hyperref}
+
+
+\title{Projektarbeit Modul 294: \\ \textbf{Frontend für die Applikation realisieren}}
+\author{Peter Ngo}
+\date{\today \\Kursnummer: 23-294-F\\Projektname: \textit{3D-Geometrie Visualizer}}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+\section*{Projektbeschreibung}
+
+\subsection*{Ausgangslage}
+Im Rahmen des Moduls 295 wurde bereits eine Backend-Applikation mit Spring Boot erstellt, die geometrische Berechnungen für verschiedene 3D-Formen wie Quader, Kugeln, Kegel und Pyramiden durchgeführt. Nun wird das Frontend entwickelt, das mit diesem Backend über REST-Controller kommuniziert und die Berechnungen sowie die Eingabe von geometrischen Formeln in einer benutzerfreundlichen Oberfläche ermöglicht. Die Zielgruppe sind Schüler:innen, Lehrer:innen und technikinteressierte Personen.
+
+\subsection*{Ziel und Umfang}
+Die Applikation unterscheidet zwei Rollen:
+\begin{itemize}
+  \item \textbf{USER}: darf Figuren eingeben und Berechnungen vornehmen lassen
+  \item \textbf{ADMIN}: kann alle Berechnungen einsehen und neue Formulare verwalten
+\end{itemize}
+
+\subsection*{Eingesetzte Technologien}
+\begin{itemize}
+  \item Angular Framework für das Frontend
+  \item Anbindung an das Backend über HTTP-Requests (REST-API)
+  \item OAuth2-Authentifizierung mit Keycloak
+  \item Angular Routing für Navigation zwischen Komponenten
+  \item Unit-Tests mit Jasmine und Karma
+  \item GitHub zur Versionsverwaltung
+  \item 3D-Darstellung der geometrischen Formen mit Three.js
+\end{itemize}
+
+\section*{Funktionale Komponenten}
+
+\subsection*{1. Benutzeroberfläche (UI) für die Geometrie-Darstellung}
+Die Benutzeroberfläche ermöglicht es dem Benutzer:
+\begin{itemize}
+  \item \textbf{Eingabe der Geometrie-Parameter} für verschiedene 3D-Formen wie Quader, Kugeln, Kegel und Pyramiden
+  \item \textbf{Anzeige der Berechnungsergebnisse}, z.B. Volumen und Oberfläche
+  \item \textbf{3D-Darstellung der Formen} (optional mit WebGL und Three.js)
+\end{itemize}
+
+\subsection*{2. Frontend-Komponenten (mindestens 8)}
+Es müssen mindestens 8 verschiedene Komponenten entwickelt werden, darunter:
+\begin{itemize}
+  \item \textbf{ShapeInputComponent}: Eingabeform für geometrische Daten wie Höhe, Radius, Seitenlängen
+  \item \textbf{CalculationComponent}: Berechnung und Anzeige der geometrischen Werte
+  \item \textbf{ResultsComponent}: Anzeige vergangener Berechnungen und Ergebnisse
+  \item \textbf{Shape3DViewComponent}: 3D-Visualisierung der geometrischen Formen (optional)
+  \item \textbf{LoginComponent}: Login über Keycloak
+  \item \textbf{DashboardComponent}: Übersicht von Berechnungen und gespeicherten Formen
+  \item \textbf{UserManagementComponent}: Benutzerverwaltung für den Admin
+  \item \textbf{NavigationComponent}: Steuerung der Navigation zwischen verschiedenen Seiten
+\end{itemize}
+
+\subsection*{3. Kommunikation mit dem Backend}
+Das Frontend wird über HTTP-Requests mit dem Backend kommunizieren:
+\begin{itemize}
+  \item \texttt{POST /api/shapes}: Eingabe von Formparametern
+  \item \texttt{POST /api/calculate}: Berechnung der geometrischen Werte
+  \item \texttt{GET /api/results}: Abruf vergangener Berechnungen
+  \item \texttt{Login}: Login via Keycloak
+\end{itemize}
+
+\subsection*{4. Sicherheitsanforderungen}
+Das Frontend wird mit \textbf{OAuth2} abgesichert:
+\begin{itemize}
+  \item Login mit \textbf{Keycloak} für die Authentifizierung
+  \item \textbf{Rollenbasierten Zugriff} (Admin/Benutzer)
+  \item \textbf{Guards} schützen Routen je nach Benutzerrolle
+  \item \textbf{Directives} ermöglichen es, bestimmte Bereiche nur für bestimmte Rollen sichtbar zu machen
+\end{itemize}
+
+\subsection*{5. Unit-Tests}
+Das Frontend wird mit \textbf{Jasmine} und \textbf{Karma} getestet:
+\begin{itemize}
+  \item Unit-Tests für alle wichtigen Komponenten
+  \item Tests für Services, die das Backend ansprechen
+\end{itemize}
+
+\subsection*{6. 3D-Visualisierung }
+Zur Visualisierung der geometrischen Formen wird \textbf{Three.js} verwendet, um die Eingaben in 3D darzustellen. Dies bietet den Benutzern eine anschauliche Rückmeldung ihrer Berechnungen.
+
+\subsection*{7. Routing und Navigation}
+Die Anwendung verwendet das \textbf{Angular Routing-Modul}, um zwischen den verschiedenen Seiten zu navigieren. Dabei werden die Routen so konfiguriert, dass sie nur für bestimmte Benutzerrollen zugänglich sind.
+
+\subsection*{8. Rollenspezifische Anzeige}
+Teile der Applikation, wie die Benutzerverwaltung oder die Ansicht vergangener Berechnungen, werden nur für den \textbf{Admin} zugänglich sein. Für den \textbf{User} wird nur die Eingabe und Anzeige der eigenen Berechnungen zur Verfügung stehen.
+
+\section*{Fazit}
+Das Frontend des Projekts \textbf{3D-Geometrie Visualizer} stellt eine benutzerfreundliche und funktionale Schnittstelle zum Backend dar, mit der Benutzer geometrische Berechnungen durchführen und die Ergebnisse anzeigen können. Durch die Integration von Sicherheitsmechanismen wie OAuth2 und der Anbindung an Keycloak wird die Anwendung sicher und benutzerfreundlich gestaltet. Optional wird eine 3D-Darstellung der Formen zur weiteren Anschaulichkeit der Ergebnisse eingebaut. Die saubere Trennung zwischen den verschiedenen Komponenten und die Implementierung von Unit-Tests sorgen für eine wartbare und skalierbare Codebasis.
+
+\vspace{0.5cm}
+
+\noindent\textbf{GitHub-Repository für back-end:} 
+\href{https://github.com/stoicfist/M295-project-geocalc3d-backend}{stoicfist/M295-project-geocalc3d-backend}
+
+\vspace{0.5cm}
+
+\noindent\textbf{GitHub-Repository für front-end:} 
+\href{https://github.com/stoicfist/M295-project-geocalc-3d-frontend}{stoicfist/M295-project-geocalc-3d-frontend}
+
+\newpage
+\section*{Wireframe: Benutzeroberfläche der Applikation}
+
+\subsection*{1. Login-Seite}
+\vspace{3cm}
+\begin{center}
+  \includegraphics[width=0.8\textwidth]{login_page.png}
+\end{center}
+\vspace{1cm}
+Dies ist die Einstiegsseite der Applikation. Der Benutzer wird per Klick auf „Login mit Keycloak“ zur Authentifizierung weitergeleitet. Nach erfolgreichem Login erfolgt die Rückleitung zur Anwendung.
+
+\subsection*{2. Default-Startseite}
+\vspace{3cm}
+\begin{center}
+  \includegraphics[width=0.8\textwidth]{default_page.png}
+\end{center}
+\vspace{1cm}
+Die Default-Ansicht dient als Begrüßung und Einstiegspunkt. Der Nutzer wählt links eine geometrische Figur aus, um mit der Visualisierung und Eingabe zu beginnen.
+
+\subsection*{3. Eingabeseite für Geometrieformen}
+\vspace{3cm}
+\begin{center}
+  \includegraphics[width=0.8\textwidth]{input_page.png}
+\end{center}
+\vspace{1cm}
+Hier kann der Benutzer je nach gewählter Figur die Parameter definieren. Sobald alle Parameter korrekt eingegeben wurden, wird die Figur in 3D angezeigt und kann berechnet werden.
+
+\subsection*{4. Admin-Dashboard}
+\vspace{3cm}
+\begin{center}
+  \includegraphics[width=0.8\textwidth]{admin_dashboard.png}
+\end{center}
+\vspace{1cm}
+Das Dashboard zeigt dem Administrator eine Übersicht über alle Berechnungen, den Verlauf, eine Aufschlüsselung der genutzten Formen sowie eine Analyse der Aktivität über die Zeit.
+
+\newpage
+
+
+\end{document}
