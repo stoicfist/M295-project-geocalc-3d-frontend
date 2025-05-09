@@ -120,7 +120,7 @@ Das Frontend des Projekts \textbf{3D-Geometrie Visualizer} stellt eine benutzerf
 \subsection*{1. Login-Seite}
 \vspace{3cm}
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{login_page.png}
+  \includegraphics[width=0.8\textwidth]{bilder/login_page.png}
 \end{center}
 \vspace{1cm}
 Dies ist die Einstiegsseite der Applikation. Der Benutzer wird per Klick auf „Login mit Keycloak“ zur Authentifizierung weitergeleitet. Nach erfolgreichem Login erfolgt die Rückleitung zur Anwendung.
@@ -128,7 +128,7 @@ Dies ist die Einstiegsseite der Applikation. Der Benutzer wird per Klick auf „
 \subsection*{2. Default-Startseite}
 \vspace{3cm}
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{default_page.png}
+  \includegraphics[width=0.8\textwidth]{bilder/default_page.png}
 \end{center}
 \vspace{1cm}
 Die Default-Ansicht dient als Begrüßung und Einstiegspunkt. Der Nutzer wählt links eine geometrische Figur aus, um mit der Visualisierung und Eingabe zu beginnen.
@@ -136,7 +136,7 @@ Die Default-Ansicht dient als Begrüßung und Einstiegspunkt. Der Nutzer wählt 
 \subsection*{3. Eingabeseite für Geometrieformen}
 \vspace{3cm}
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{input_page.png}
+  \includegraphics[width=0.8\textwidth]{bilder/input_page.png}
 \end{center}
 \vspace{1cm}
 Hier kann der Benutzer je nach gewählter Figur die Parameter definieren. Sobald alle Parameter korrekt eingegeben wurden, wird die Figur in 3D angezeigt und kann berechnet werden.
@@ -144,7 +144,7 @@ Hier kann der Benutzer je nach gewählter Figur die Parameter definieren. Sobald
 \subsection*{4. Admin-Dashboard}
 \vspace{3cm}
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{admin_dashboard.png}
+  \includegraphics[width=0.8\textwidth]{bilder/admin_dashboard.png}
 \end{center}
 \vspace{1cm}
 Das Dashboard zeigt dem Administrator eine Übersicht über alle Berechnungen, den Verlauf, eine Aufschlüsselung der genutzten Formen sowie eine Analyse der Aktivität über die Zeit.
