@@ -68,4 +68,42 @@ Das Frontend nutzt Angular Services für HTTP-Zugriffe mit OAuth2-Token.
 ---
 
 ## 📂 Projektstruktur (Frontend)
+src/
+├── app/
+│ ├── components/
+│ │ ├── login/
+│ │ ├── shape-input/
+│ │ ├── shape-3d-view/
+│ │ ├── calculation/
+│ │ ├── results/
+│ │ └── admin-dashboard/
+│ ├── services/
+│ ├── guards/
+│ ├── interceptors/
+│ └── app-routing.module.ts
+├── assets/
+└── environments/
 
+
+---
+
+## 🧪 Unit-Tests
+
+- Komponenten: z. B. `ShapeInputComponent`, `ResultsComponent`
+- Services: HTTP-Kommunikation + Mock-Login
+- Getestet mit Jasmine & Karma
+
+---
+
+## 🔧 Setup & Start
+
+```bash
+npm install
+ng serve
+
+---
+
+🧑‍💻 Autor
+Peter Ngo
+Kurs: 23-294-F
+Projektarbeit ÜK 294
