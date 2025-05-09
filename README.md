@@ -96,7 +96,7 @@ src/
 
 ---
 
-📝 Dokumentation
+## 📝 Dokumentation
 In LaTeX über Overleaf
 
 Bilder in docs/-Ordner organisiert
