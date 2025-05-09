@@ -68,6 +68,7 @@ Das Frontend nutzt Angular Services für HTTP-Zugriffe mit OAuth2-Token.
 ---
 
 ## 📂 Projektstruktur (Frontend)
+```
 src/
 ├── app/
 │ ├── components/
@@ -83,7 +84,7 @@ src/
 │ └── app-routing.module.ts
 ├── assets/
 └── environments/
-
+```
 
 ---
 
@@ -100,6 +101,7 @@ src/
 ```bash
 npm install
 ng serve
+````
 
 ---
 
