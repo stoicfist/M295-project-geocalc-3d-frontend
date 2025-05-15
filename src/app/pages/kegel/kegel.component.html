@@ -1,24 +1,21 @@
-<div class="form-wrapper">
-    <h2>Kegel</h2>
-  
-    <form [formGroup]="form" (ngSubmit)="berechnen()">
-      <mat-form-field appearance="fill">
-        <mat-label>Radius (r)</mat-label>
-        <input matInput type="number" formControlName="r" required />
-      </mat-form-field>
-  
-      <mat-form-field appearance="fill">
-        <mat-label>Höhe (h)</mat-label>
-        <input matInput type="number" formControlName="h" required />
-      </mat-form-field>
-  
-      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
-        Berechnen
-      </button>
-    </form>
-  
-    <div class="result-box" *ngIf="result !== null">
-      <p><strong>Volumen:</strong> {{ result }} cm³</p>
-    </div>
-  </div>
-  
+<h2>Kegel berechnen</h2>
+<form [formGroup]="form" (ngSubmit)="berechnen()">
+  <mat-form-field appearance="fill">
+    <mat-label>Radius (r)</mat-label>
+    <input matInput type="number" formControlName="radius" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Höhe (h)</mat-label>
+    <input matInput type="number" formControlName="hoehe" required />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+    Berechnen
+  </button>
+</form>
+
+<div *ngIf="volume !== null && surface !== null">
+  <p><strong>Volumen:</strong> {{ volume }}</p>
+  <p><strong>Oberfläche:</strong> {{ surface }}</p>
+</div>

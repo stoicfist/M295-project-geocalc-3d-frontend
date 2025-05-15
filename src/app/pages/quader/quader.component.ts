@@ -1,41 +1,55 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { ShapeService } from '../../services/shape.service';
 
 @Component({
   selector: 'app-quader',
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   templateUrl: './quader.component.html',
   styleUrls: ['./quader.component.scss']
 })
 export class QuaderComponent {
   form: FormGroup;
-  result: number | null = null;
+  volume: number | null = null;
+  surface: number | null = null;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private shapeService: ShapeService) {
     this.form = this.fb.group({
       a: [null, [Validators.required, Validators.min(0.1)]],
       b: [null, [Validators.required, Validators.min(0.1)]],
-      h: [null, [Validators.required, Validators.min(0.1)]]
+      c: [null, [Validators.required, Validators.min(0.1)]],
     });
   }
 
   berechnen() {
-    const { a, b, h } = this.form.value;
-    if (a > 0 && b > 0 && h > 0) {
-      const volumen = a * b * h;
-      this.result = +volumen.toFixed(2);
-    }
-  }
+    const shapeRequest = {
+      shapeType: 'quader',
+      parameters: {
+        a: this.form.value.a,
+        b: this.form.value.b,
+        c: this.form.value.c,
+      }
+    };
+
+    this.shapeService.calculate(shapeRequest).subscribe({
+      next: (response) => {
+        this.volume = response.volume ?? null;
+        this.surface = response.surface ?? null;
+      },
+      error: (err) => {
+        console.error('❌ Fehler beim Berechnen (Quader):', err);
+      }
+    });
+}
 }

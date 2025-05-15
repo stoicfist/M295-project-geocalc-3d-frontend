@@ -12,7 +12,9 @@
     </button>
   </form>
 
-  <div *ngIf="result !== null" class="result-box">
-    <p><strong>Volumen:</strong> {{ result }} cm³</p>
-  </div>
+<div *ngIf="volume !== null && surface !== null">
+  <p><strong>Volumen:</strong> {{ volume }}</p>
+  <p><strong>Oberfläche:</strong> {{ surface }}</p>
+</div>
+
 </div>

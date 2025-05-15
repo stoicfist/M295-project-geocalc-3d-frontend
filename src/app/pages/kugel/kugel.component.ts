@@ -21,7 +21,8 @@ import { ShapeService } from '../../services/shape.service';
 })
 export class KugelComponent {
   form: FormGroup;
-  result: number | null = null;
+  volume: number | null = null;
+  surface: number | null = null;
 
   constructor(private fb: FormBuilder, private shapeService: ShapeService) {
     this.form = this.fb.group({
@@ -29,24 +30,23 @@ export class KugelComponent {
     });
   }
 
- berechnen() {
-  const shapeRequest = {
-    shapeType: 'kugel',
-    parameters: {
-      radius: this.form.value.radius
-    }
-  };
+  berechnen() {
+    const shapeRequest = {
+      shapeType: 'kugel',
+      parameters: {
+        radius: this.form.value.radius
+      }
+    };
 
-  console.log('📦 Request Payload:', shapeRequest);
+    this.shapeService.calculate(shapeRequest).subscribe({
+      next: (response) => {
+        this.volume = response.volume ?? null;
+        this.surface = response.surface ?? null;
+      },
+      error: (err) => {
+        console.error('❌ Fehler beim Berechnen:', err);
+      }
+    });
+  }
+}
 
-  this.shapeService.calculate(shapeRequest).subscribe({
-    next: (response) => {
-      console.log('✅ Ergebnis:', response);
-      this.result = response.result || response.volume || '?';
-    },
-    error: (err) => {
-      console.error('❌ Fehler beim Berechnen:', err);
-    }
-  });
-}
-}

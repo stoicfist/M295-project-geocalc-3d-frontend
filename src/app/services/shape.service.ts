@@ -21,5 +21,4 @@ calculate(shape: any): Observable<any> {
 
   return this.http.post(`${this.apiUrl}/calculate`, shape, { headers });
 }
-
 }
