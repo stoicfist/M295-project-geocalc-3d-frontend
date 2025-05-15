@@ -1,0 +1,26 @@
+.admin-dashboard {
+    padding: 2rem;
+    color: white;
+  
+    h2 {
+      margin-bottom: 1.5rem;
+    }
+  
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+  
+    mat-card {
+      background: #1e1e1e;
+      padding: 1rem;
+      color: #eee;
+    }
+  
+    .footer {
+      margin-top: 2rem;
+      text-align: center;
+    }
+  }
+  

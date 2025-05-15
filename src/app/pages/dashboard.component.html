@@ -47,6 +47,11 @@
       <ng-container *ngIf="activeView === 'kegel'">
         <app-kegel />
       </ng-container>
+
+        <!-- Dynamische Ansicht für Admin Dashboard -->
+      <ng-container *ngIf="auth.username === 'admin'">
+        <button routerLink="/admin">Admin Dashboard</button>
+      </ng-container>
       
 
       <section class="preview">
