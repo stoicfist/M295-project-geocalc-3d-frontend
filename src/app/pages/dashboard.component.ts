@@ -8,6 +8,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
 import { SessionExpiredDialogComponent } from '../components/session-expired-dialog/session-expired-dialog.component';
 import { AuthService } from '../auth/auth.service';
+import { KugelComponent } from './kugel/kugel.component';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -19,11 +21,14 @@ import { AuthService } from '../auth/auth.service';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    KugelComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
+  activeView: string = ''; // Variable zur Steuerung der Ansicht
+
   constructor(
     private dialog: MatDialog,
     public auth: AuthService
@@ -35,5 +40,9 @@ export class DashboardComponent {
         this.auth.logout();
       }
     });
+  }
+
+  show(view: string) {
+    this.activeView = view; // Setzt die aktive Ansicht
   }
 }

@@ -3,7 +3,7 @@
     <h3>3D Geometry Visualizer</h3>
     <div class="menu-items">
       <button mat-button>Menu</button>
-      <button mat-button>Kugel</button>
+      <button mat-button (click)="show('kugel')">Kugel</button>
       <button mat-button>Quader</button>
       <button mat-button>Kegel</button>
     </div>
@@ -22,7 +22,7 @@
 
     <main class="content">
       <section class="welcome">
-        <h1>Willkommen</h1>       
+        <h1>Willkommen</h1>
         <p><strong>Hinweis:</strong></p>
         <p>
           Dies ist eine einfache Webanwendung zur mathematischen 3D-Visualisierung im
@@ -32,6 +32,11 @@
           Bitte wähle links im Menü eine Form aus und gib die Parameter ein.
         </p>
       </section>
+
+      <!-- Dynamische Ansicht für Kugel -->
+      <ng-container *ngIf="activeView === 'kugel'">
+        <app-kugel></app-kugel>
+      </ng-container>
 
       <section class="preview">
         <img src="assets/animated-sphere.gif" alt="3D animated Object" class="animated-gif" />
