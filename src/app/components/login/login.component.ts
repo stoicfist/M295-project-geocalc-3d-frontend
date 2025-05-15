@@ -2,15 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
 import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule],
-  template: `
-    <p>Login works!</p>
-    <button (click)="login()">🔐 Login mit Keycloak</button>
-  `,
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule,
+  ],
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router) {}
@@ -20,12 +28,14 @@ export class LoginComponent implements OnInit {
 
     if (this.auth.isLoggedIn()) {
       this.router.navigate(['/dashboard']);
-    } else {
-      this.auth.login(); // Wenn nicht eingeloggt → direkt weiter zu Keycloak
     }
   }
 
   login() {
     this.auth.login();
+  }
+
+  openFirmaWebsite() {
+    window.open('https://www.semafor.ch/de/', '_blank', 'noopener');
   }
 }

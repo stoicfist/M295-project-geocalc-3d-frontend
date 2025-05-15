@@ -29,4 +29,17 @@ export class AuthService {
     const claims: any = this.oauthService.getIdentityClaims();
     return claims?.preferred_username || 'Unbekannt';
   }
+  
+  get roles(): string[] {
+    const claims: any = this.oauthService.getIdentityClaims();
+    return claims?.realm_access?.roles || [];
+  }
+  
+  get isAdmin(): boolean {
+    return this.roles.includes('ADMIN');
+  }
+  
+  get isUser(): boolean {
+    return this.roles.includes('USER');
+  }  
 }

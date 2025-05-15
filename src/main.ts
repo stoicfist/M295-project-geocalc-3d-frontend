@@ -6,9 +6,11 @@ import { routes } from './app/app.routes';
 import { importProvidersFrom } from '@angular/core';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { AuthService } from './app/auth/auth.service';
+import { MatDialogModule } from '@angular/material/dialog';
 
 bootstrapApplication(AppComponent, {
   providers: [
+    importProvidersFrom(MatDialogModule),
     provideHttpClient(),
     provideRouter(routes),
     importProvidersFrom(OAuthModule.forRoot({

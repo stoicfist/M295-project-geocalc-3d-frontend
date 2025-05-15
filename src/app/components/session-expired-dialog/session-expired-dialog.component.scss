@@ -1,0 +1,26 @@
+:host {
+    display: block;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  }
+  
+  h2 {
+    margin-top: 0;
+    font-size: 1.6rem;
+  }
+  
+  p {
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  

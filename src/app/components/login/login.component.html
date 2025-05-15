@@ -1,2 +1,29 @@
 <p>login works!</p>
 
+<div class="login-container">
+    <mat-card class="login-card">
+      <h1>🧮 3D-Geometrie Visualizer</h1>
+      <p>Logge dich ein, um Figuren zu berechnen und zu visualisieren</p>
+  
+      <button mat-raised-button color="primary" (click)="login()">
+        🔐 Login mit Keycloak
+      </button>
+  
+      <div class="logo-in-card">
+        <button
+          mat-icon-button
+          class="logo-button"
+          (click)="openFirmaWebsite()"
+          matTooltip="Zur Firmenwebsite"
+          aria-label="Logo Firma"
+        >
+          <img src="assets/logo.png" alt="Logo Firma" class="logo" />
+        </button>
+      </div>
+  
+      <div class="footer-in-card">
+        © 2025 Peter Ngo – 3D-Geometrie Visualizer
+      </div>
+    </mat-card>
+  </div>
+  
