@@ -1,25 +1,18 @@
 <div class="form-wrapper">
-    <h2>Kugel</h2>
-  
-    <form [formGroup]="form" (ngSubmit)="berechnen()">
-      <mat-form-field appearance="fill">
-        <mat-label>Radius (r)</mat-label>
-        <input matInput type="number" formControlName="radius" required />
-        <mat-error *ngIf="form.controls['radius'].hasError('required')">
-          Radius ist erforderlich
-        </mat-error>
-        <mat-error *ngIf="form.controls['radius'].hasError('min')">
-          Radius muss größer als 0 sein
-        </mat-error>
-      </mat-form-field>
-  
-      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
-        Berechnen
-      </button>
-    </form>
-  
-    <div class="result-box" *ngIf="result !== null">
-      <p><strong>Volumen:</strong> {{ result }} cm³</p>
-    </div>
+  <h2>Kugel</h2>
+
+  <form [formGroup]="form" (ngSubmit)="berechnen()">
+    <mat-form-field appearance="fill">
+      <mat-label>Radius (r)</mat-label>
+      <input matInput type="number" formControlName="radius" required />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+      Berechnen
+    </button>
+  </form>
+
+  <div *ngIf="result !== null" class="result-box">
+    <p><strong>Volumen:</strong> {{ result }} cm³</p>
   </div>
-  
+</div>

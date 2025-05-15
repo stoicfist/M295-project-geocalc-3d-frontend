@@ -41,5 +41,10 @@ export class AuthService {
   
   get isUser(): boolean {
     return this.roles.includes('USER');
-  }  
+  }
+  
+  get accessToken(): string {
+  return this.oauthService.getAccessToken(); // oder je nach Setup
+}
+  
 }

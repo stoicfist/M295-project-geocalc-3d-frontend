@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { KugelComponent } from './kugel.component';
 
 describe('KugelComponent', () => {
@@ -8,7 +7,7 @@ describe('KugelComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [KugelComponent]
+      declarations: [KugelComponent]
     })
     .compileComponents();
 
