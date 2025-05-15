@@ -13,12 +13,16 @@
   }
   
   .menu-items {
+    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
     margin-bottom: 1rem;
-  }
-  
+
+    button:first-child {
+    margin-bottom: 5rem;
+ }
+}
   .menu-items button {
     background-color: #222;
     border: 1px solid #4caf50;
@@ -71,8 +75,6 @@
     margin-top: 0rem; // 👈 optional: noch mehr Abstand
     align-items: flex-start;
   }
-
-
   
   /* 3D Vorschau-Box */
   .preview {
