@@ -6,14 +6,18 @@ import { authConfig } from './auth.config';
 export class AuthService {
   constructor(private oauthService: OAuthService) {
     this.oauthService.configure(authConfig);
-    this.oauthService.loadDiscoveryDocumentAndTryLogin();
   }
 
-  login() {
+  async initAuth(): Promise<void> {
+    await this.oauthService.loadDiscoveryDocumentAndTryLogin();
+    console.log('Is logged in:', this.isLoggedIn());
+  }
+
+  login(): void {
     this.oauthService.initLoginFlow();
   }
 
-  logout() {
+  logout(): void {
     this.oauthService.logOut();
   }
 
@@ -21,11 +25,8 @@ export class AuthService {
     return this.oauthService.hasValidAccessToken();
   }
 
-  get identityClaims() {
-    return this.oauthService.getIdentityClaims();
-  }
-
-  get accessToken(): string {
-    return this.oauthService.getAccessToken();
+  get username(): string {
+    const claims: any = this.oauthService.getIdentityClaims();
+    return claims?.preferred_username || 'Unbekannt';
   }
 }

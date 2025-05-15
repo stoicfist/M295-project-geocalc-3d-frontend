@@ -1,13 +1,25 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { LoginComponent } from './app/components/login/login.component';
+import { AppComponent } from './app/app.component';
 import { provideHttpClient } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
-import { provideOAuthClient } from 'angular-oauth2-oidc';
+import { routes } from './app/app.routes';
+import { importProvidersFrom } from '@angular/core';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { AuthService } from './app/auth/auth.service';
 
-bootstrapApplication(LoginComponent, {
+bootstrapApplication(AppComponent, {
   providers: [
     provideHttpClient(),
-    provideRouter([]),
-    provideOAuthClient(),
-  ],
+    provideRouter(routes),
+    importProvidersFrom(OAuthModule.forRoot({
+      resourceServer: {
+        allowedUrls: ['http://localhost:9090/api'],
+        sendAccessToken: true
+      }
+    }))
+  ]
+}).then(appRef => {
+  const injector = appRef.injector;
+  const auth = injector.get(AuthService);
+  auth.initAuth(); // Nur Discovery + Token-Check — KEIN Login!
 });

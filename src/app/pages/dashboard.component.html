@@ -1,0 +1,45 @@
+<mat-sidenav-container class="container">
+    <mat-sidenav mode="side" opened class="sidenav">
+      <h3>3D Geometry Visualizer</h3>
+      <button mat-button>Menu</button>
+      <button mat-button>Kugel</button>
+      <button mat-button>Quader</button>
+      <button mat-button>Kegel</button>
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+      <mat-toolbar color="primary" class="toolbar">
+        <span class="spacer"></span>
+        <button mat-button [matMenuTriggerFor]="userMenu">
+          Benutzer <mat-icon>expand_more</mat-icon>
+        </button>
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
+      </mat-toolbar>
+  
+      <main class="content">
+        <section class="welcome">
+          <h1>Willkommen</h1>
+          <p><strong>Hinweis:</strong></p>
+          <p>
+            Dies ist eine einfache Webanwendung zur mathematischen 3D-Visualisierung im
+            Rahmen des Moduls 294.
+          </p>
+          <p>
+            Wähle links im Menü eine Form aus und gib die Parameter ein.
+          </p>
+        </section>
+  
+        <section class="preview">
+          <div class="circle-placeholder">3D animated Object</div>
+        </section>
+      </main>
+  
+      <footer class="footer">
+        © 2025 Peter Ngo – 3D-Geometrie Visualizer
+        <a href="https://www.semafor.ch/de/" target="_blank">Logo-Firma</a>
+      </footer>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
