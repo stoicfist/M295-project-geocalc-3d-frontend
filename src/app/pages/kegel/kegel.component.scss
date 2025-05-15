@@ -1,0 +1,19 @@
+.form-wrapper {
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  
+    h2 {
+      margin-bottom: 1rem;
+    }
+  
+    .result-box {
+      margin-top: 2rem;
+      background-color: #222;
+      padding: 1rem;
+      border-radius: 8px;
+      color: #fff;
+    }
+  }
+  

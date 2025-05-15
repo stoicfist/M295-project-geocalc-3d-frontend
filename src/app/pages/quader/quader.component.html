@@ -1,0 +1,29 @@
+<div class="form-wrapper">
+    <h2>Quader</h2>
+  
+    <form [formGroup]="form" (ngSubmit)="berechnen()">
+      <mat-form-field appearance="fill">
+        <mat-label>Länge (a)</mat-label>
+        <input matInput type="number" formControlName="a" required />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Breite (b)</mat-label>
+        <input matInput type="number" formControlName="b" required />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Höhe (h)</mat-label>
+        <input matInput type="number" formControlName="h" required />
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+        Berechnen
+      </button>
+    </form>
+  
+    <div class="result-box" *ngIf="result !== null">
+      <p><strong>Volumen:</strong> {{ result }} cm³</p>
+    </div>
+  </div>
+  

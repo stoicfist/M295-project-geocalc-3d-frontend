@@ -9,6 +9,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { SessionExpiredDialogComponent } from '../components/session-expired-dialog/session-expired-dialog.component';
 import { AuthService } from '../auth/auth.service';
 import { KugelComponent } from './kugel/kugel.component';
+import { QuaderComponent } from './quader/quader.component';
+import { KegelComponent } from './kegel/kegel.component';
 
 
 @Component({
@@ -21,7 +23,9 @@ import { KugelComponent } from './kugel/kugel.component';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    KugelComponent
+    KugelComponent,
+    QuaderComponent,
+    KegelComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
