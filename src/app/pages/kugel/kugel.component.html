@@ -17,4 +17,15 @@
   <p><strong>Oberfläche:</strong> {{ surface }}</p>
 </div>
 
+<div *ngIf="result">
+  <p><strong>Volumen:</strong> {{ result.volume }}</p>
+  <p><strong>Oberfläche:</strong> {{ result.surface }}</p>
+</div>
+
+<!-- 🔽 Hier 3D-Vorschau anzeigen -->
+<app-viewer3d
+  [shape]="'kugel'"
+  [parameters]="form.value">
+</app-viewer3d>
+
 </div>

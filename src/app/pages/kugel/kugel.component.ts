@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ShapeService } from '../../services/shape.service';
+import { Viewer3dComponent } from '../viewer3d/viewer3d.component';
 
 @Component({
   selector: 'app-kugel',
@@ -15,6 +16,7 @@ import { ShapeService } from '../../services/shape.service';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    Viewer3dComponent
   ],
   templateUrl: './kugel.component.html',
   styleUrls: ['./kugel.component.scss']
@@ -23,6 +25,12 @@ export class KugelComponent {
   form: FormGroup;
   volume: number | null = null;
   surface: number | null = null;
+  result: { volume: number; surface: number } | null = null;
+
+  show3D = false;
+
+  // 🧩 Neue Property für Übergabe an <app-viewer3d>
+  viewerParams: any = {}; 
 
   constructor(private fb: FormBuilder, private shapeService: ShapeService) {
     this.form = this.fb.group({
@@ -42,6 +50,10 @@ export class KugelComponent {
       next: (response) => {
         this.volume = response.volume ?? null;
         this.surface = response.surface ?? null;
+
+        // 👉 Neue Werte an das Viewer-Component geben
+        this.viewerParams = shapeRequest.parameters;
+        this.show3D = true;
       },
       error: (err) => {
         console.error('❌ Fehler beim Berechnen:', err);

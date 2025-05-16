@@ -15,6 +15,8 @@ import { KugelComponent } from './kugel/kugel.component';
 import { QuaderComponent } from './quader/quader.component';
 import { KegelComponent } from './kegel/kegel.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { Viewer3dComponent } from './viewer3d/viewer3d.component';
+
 
 // Services
 import { AuthService } from '../auth/auth.service';
@@ -36,7 +38,8 @@ import { AuthService } from '../auth/auth.service';
     KugelComponent,
     QuaderComponent,
     KegelComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    Viewer3dComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],

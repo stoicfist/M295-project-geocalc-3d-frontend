@@ -9,6 +9,7 @@
       <button mat-button (click)="show('kugel')">Kugel</button>
       <button mat-button (click)="show('quader')">Quader</button>
       <button mat-button (click)="show('kegel')">Kegel</button>
+      <button mat-button (click)="show('3d')">3D Vorschau</button>
     </div>
   </mat-sidenav>
 
@@ -39,6 +40,11 @@
       <!-- Dynamische Ansicht für Admin -->
       <ng-container *ngIf="activeView === 'admin'">
         <app-admin-dashboard></app-admin-dashboard>
+      </ng-container>
+
+      <!-- Dynamische Ansicht für 3D-Viewer -->
+      <ng-container *ngIf="activeView === '3d'">
+        <app-viewer3d></app-viewer3d>
       </ng-container>
 
       <!-- Dynamische Ansicht für Kugel -->
