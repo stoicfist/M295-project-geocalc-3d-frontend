@@ -182,7 +182,16 @@ Da dieses Projekt im Rahmen des ÜK benotet wird und der Schwerpunkt auf dem Mod
 \section*{Screenshots der Applikation}
 
 \vspace{1cm}
+\noindent\textbf{Login-Seite mit Keycloak:}
+\\ Die Einstiegsseite bietet eine einfache Möglichkeit, sich über den Button mit dem Keycloak-Server zu authentifizieren.
+\vspace{0.3cm}
+\begin{center}
+  \includegraphics[width=0.8\textwidth]{./bilder/login.png}
+\end{center}
+
+\vspace{1cm}
 \noindent\textbf{Dashboard (Admin):}
+\\ Nach erfolgreichem Login landet der Nutzer auf dem Start-Dashboard. Von hier aus können Figuren gewählt oder zum Adminbereich gewechselt werden.
 \vspace{0.3cm}
 \begin{center}
   \includegraphics[width=0.8\textwidth]{./bilder/dashboard.png}
@@ -191,6 +200,7 @@ Da dieses Projekt im Rahmen des ÜK benotet wird und der Schwerpunkt auf dem Mod
 \newpage
 \vspace{1cm}
 \noindent\textbf{Admin-Dashboard mit Verlauf, Graph und Torten-Diagramm:}
+\\ Der Admin sieht eine Übersicht über alle bisherigen Berechnungen, gruppiert nach Benutzer und Figur. Zusätzlich gibt es zwei Diagramme: die Verteilung der Formen (Tortendiagramm) und eine Aktivitätsanalyse über die Zeit (Liniendiagramm).
 \vspace{0.3cm}
 \begin{center}
   \includegraphics[width=0.8\textwidth]{./bilder/admin-dashboard.png}
@@ -198,6 +208,7 @@ Da dieses Projekt im Rahmen des ÜK benotet wird und der Schwerpunkt auf dem Mod
 
 \vspace{1cm}
 \noindent\textbf{Berechnung Quader mit gültigen Werten:}
+\\ Beispiel einer gültigen Eingabe für einen Quader. Die Oberfläche und das Volumen werden korrekt berechnet und direkt unterhalb angezeigt.
 \vspace{0.3cm}
 \begin{center}
   \includegraphics[width=0.8\textwidth]{./bilder/quader.png}
@@ -205,14 +216,16 @@ Da dieses Projekt im Rahmen des ÜK benotet wird und der Schwerpunkt auf dem Mod
 
 \vspace{1cm}
 \noindent\textbf{Kegel mit negativer Eingabe (Fehlerfall):}
-\\ Hier wird der Berechnugnsknopf ausgegraut.
+\\ Hier wird der Berechnungsknopf automatisch deaktiviert, wenn ungültige Werte wie negative Zahlen eingegeben werden. Dies verhindert unlogische Serveranfragen.
 \vspace{0.3cm}
 \begin{center}
   \includegraphics[width=0.5\textwidth]{./bilder/illegal.png}
 \end{center}
 
+\newpage
 \vspace{1cm}
 \noindent\textbf{Kegel mit grossen Werten:}
+\\ Ein Beispiel mit sehr großen Parametern. Das System berechnet auch extreme Werte korrekt.
 \vspace{0.3cm}
 \begin{center}
   \includegraphics[width=0.5\textwidth]{./bilder/kegel.png}
@@ -220,9 +233,16 @@ Da dieses Projekt im Rahmen des ÜK benotet wird und der Schwerpunkt auf dem Mod
 
 \vspace{1cm}
 \noindent\textbf{Kugel mit Radius 1 – 3D korrekt dargestellt:}
+\\ Sobald der Benutzer einen Radius von genau \texttt{1} eingibt, wird die 3D-Darstellung korrekt gerendert. Die Darstellung ist interaktiv:
+\begin{itemize}
+  \item Die Kugel beginnt automatisch zu rotieren, sobald sie erscheint.
+  \item Per Maus kann die Kugel zusätzlich gedreht werden.
+  \item Auch das Zoomen mit dem Mausrad wird unterstützt (dank \texttt{OrbitControls}).
+  \item Der Benutzer bekommt so ein anschauliches Feedback zur eingegebenen Geometrie.
+\end{itemize}
 \vspace{0.3cm}
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{./bilder/kugel.png}
+  \includegraphics[width=0.3\textwidth]{./bilder/kugel.png}
 \end{center}
 
 \end{document}
