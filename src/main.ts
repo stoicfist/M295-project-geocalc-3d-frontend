@@ -7,12 +7,14 @@ import { importProvidersFrom } from '@angular/core';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { AuthService } from './app/auth/auth.service';
 import { MatDialogModule } from '@angular/material/dialog';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(MatDialogModule),
     provideHttpClient(),
     provideRouter(routes),
+    provideAnimations(),
     importProvidersFrom(OAuthModule.forRoot({
       resourceServer: {
         allowedUrls: ['http://localhost:9090/api'],
