@@ -1,27 +1,55 @@
-<div class="admin-dashboard">
-    <h2>Admin Dashboard</h2>
-  
-    <div class="cards">
-      <mat-card class="verlauf-card">
-        <h3>Verlauf</h3>
-        <p>🔍 Hier werden Berechnungen gelistet</p>
-      </mat-card>
-  
-      <mat-card class="diagramm-card">
-        <h3>Shapes Breakdown</h3>
-        <p>📊 Platz für Balkendiagramm</p>
-      </mat-card>
-  
-      <mat-card class="zeitraum-card">
-        <h3>Berechnungen über Zeit</h3>
-        <p>📈 Platz für Zeitverlauf-Chart</p>
-      </mat-card>
-    </div>
-  
-    <div class="footer">
-      <button mat-raised-button color="primary" routerLink="/dashboard">
-        Zurück zur Figurenerstellung
-      </button>
-    </div>
+<div class="admin-dashboard-container">
+  <h2>Admin Dashboard</h2>
+
+  <div class="dashboard-grid">
+    <!-- Verlaufstabelle -->
+    <mat-card class="dashboard-card full-width">
+      <mat-card-title>🧾 Verlauf</mat-card-title>
+      <mat-card-content>
+        <!-- Verlauf-Tabelle -->
+        <table class="verlauf-tabelle">
+          <thead>
+            <tr>
+              <th>Benutzer</th>
+              <th>Form</th>
+              <th>Parameter</th>
+              <th>Datum</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let eintrag of figureHistory">
+              <td>{{ resolveUsername(eintrag.owner) }}</td>
+              <td>{{ capitalizeFirstLetter(eintrag.shapeType) }}</td>
+              <td>
+                <ng-container *ngFor="let item of formatParameters(eintrag.parameters).split(', ')">
+                  {{ item }}<br />
+                </ng-container>
+              </td>
+              <td>{{ eintrag.createdAt | date: 'yyyy-MM-dd' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Shapes Breakdown -->
+    <mat-card class="dashboard-card">
+      <mat-card-title>📊 Shapes Breakdown</mat-card-title>
+      <mat-card-content>
+        Platz für Balkendiagramm
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Verlauf über Zeit -->
+    <mat-card class="dashboard-card">
+      <mat-card-title>📈 Berechnungen über Zeit</mat-card-title>
+      <mat-card-content>
+        Platz für Zeitverlauf-Chart
+      </mat-card-content>
+    </mat-card>
   </div>
-  
+
+  <div class="zurueck-button">
+    <button mat-button routerLink="/dashboard">⬅ Zurück zur Figurenerstellung</button>
+  </div>
+</div>

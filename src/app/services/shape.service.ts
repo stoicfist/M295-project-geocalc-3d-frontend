@@ -21,4 +21,14 @@ calculate(shape: any): Observable<any> {
 
   return this.http.post(`${this.apiUrl}/calculate`, shape, { headers });
 }
+
+getFigureHistory(): Observable<any[]> {
+  const token = this.auth.accessToken;
+
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`
+  });
+
+  return this.http.get<any[]>('/api/shapes/history', { headers });
+}
 }
