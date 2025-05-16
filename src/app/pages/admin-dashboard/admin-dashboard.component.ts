@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { ShapeService } from '../../services/shape.service';
+import { PieChartComponent } from './pie-chart/pie-chart.component';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -10,23 +11,33 @@ import { ShapeService } from '../../services/shape.service';
   imports: [
     CommonModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    PieChartComponent
   ],
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent implements OnInit {
   figureHistory: any[] = [];
+  shapeCounts: { name: string; value: number }[] = [];
 
   constructor(private shapeService: ShapeService) {}
 
   ngOnInit(): void {
-    this.shapeService.getFigureHistory().subscribe({
-      next: (data) => {
-        console.log('📥 Verlauf erhalten:', data);
-        this.figureHistory = data;
-      },
-      error: (err) => console.error('❌ Fehler beim Laden des Verlaufs:', err)
+    this.shapeService.getFigureHistory().subscribe(data => {
+      this.figureHistory = data;
+
+      const counts: Record<string, number> = {};
+
+      data.forEach(entry => {
+        const type = entry.shapeType.toLowerCase();
+        counts[type] = (counts[type] || 0) + 1;
+      });
+
+      this.shapeCounts = Object.entries(counts).map(([name, value]) => ({
+        name: name.charAt(0).toUpperCase() + name.slice(1),
+        value
+      }));
     });
   }
 
