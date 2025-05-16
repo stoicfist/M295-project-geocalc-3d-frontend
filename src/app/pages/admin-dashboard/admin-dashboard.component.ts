@@ -47,7 +47,10 @@ export class AdminDashboardComponent implements OnInit {
       counter[date] = (counter[date] || 0) + 1;
     }
 
-    return Object.entries(counter).map(([name, value]) => ({ name, value }));
+    // Hier sortieren nach Datum (Schlüssel)
+    return Object.entries(counter)
+      .sort(([a], [b]) => new Date(a).getTime() - new Date(b).getTime())
+      .map(([name, value]) => ({ name, value }));
   }
 
   resolveUsername(id: string): string {
