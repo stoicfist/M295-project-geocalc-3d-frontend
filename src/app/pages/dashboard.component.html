@@ -2,8 +2,9 @@
   <mat-sidenav mode="side" opened class="sidenav">
     <h3>3D Geometry Visualizer</h3>
     <div class="menu-items">
-      <!-- Admin-Button nur für admin sichtbar -->
-      <button *ngIf="auth.username === 'admin'" mat-button routerLink="/admin">Admin Dashboard</button>
+
+      <!-- Admin Dashboard nur für admin -->
+      <button *ngIf="auth.username === 'admin'" mat-button (click)="show('admin')">Admin Dashboard</button>
       <button mat-button>Menu</button>
       <button mat-button (click)="show('kugel')">Kugel</button>
       <button mat-button (click)="show('quader')">Quader</button>
@@ -35,6 +36,11 @@
         </p>
       </section>
 
+      <!-- Dynamische Ansicht für Admin -->
+      <ng-container *ngIf="activeView === 'admin'">
+        <app-admin-dashboard></app-admin-dashboard>
+      </ng-container>
+
       <!-- Dynamische Ansicht für Kugel -->
       <ng-container *ngIf="activeView === 'kugel'">
         <app-kugel></app-kugel>
@@ -42,12 +48,12 @@
       
       <!-- Dynamische Ansicht für Quader -->
       <ng-container *ngIf="activeView === 'quader'">
-        <app-quader />
+        <app-quader></app-quader>
       </ng-container>
 
-        <!-- Dynamische Ansicht für Kegel -->
+      <!-- Dynamische Ansicht für Kegel -->
       <ng-container *ngIf="activeView === 'kegel'">
-        <app-kegel />
+        <app-kegel></app-kegel>
       </ng-container>     
 
       <section class="preview">
