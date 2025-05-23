@@ -24,8 +24,9 @@
 
 <!-- 🔽 Hier 3D-Vorschau anzeigen -->
 <app-viewer3d
+  *ngIf="show3D"
   [shape]="'kugel'"
-  [parameters]="form.value">
+  [parameters]="viewerParams">
 </app-viewer3d>
 
 </div>

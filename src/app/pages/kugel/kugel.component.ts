@@ -26,11 +26,8 @@ export class KugelComponent {
   volume: number | null = null;
   surface: number | null = null;
   result: { volume: number; surface: number } | null = null;
-
   show3D = false;
-
-  // 🧩 Neue Property für Übergabe an <app-viewer3d>
-  viewerParams: any = {}; 
+  viewerParams: any = {};
 
   constructor(private fb: FormBuilder, private shapeService: ShapeService) {
     this.form = this.fb.group({
@@ -50,10 +47,9 @@ export class KugelComponent {
       next: (response) => {
         this.volume = response.volume ?? null;
         this.surface = response.surface ?? null;
-
-        // 👉 Neue Werte an das Viewer-Component geben
         this.viewerParams = shapeRequest.parameters;
-        this.show3D = true;
+        this.show3D = false;
+        setTimeout(() => this.show3D = true, 0); // *ngIf trick
       },
       error: (err) => {
         console.error('❌ Fehler beim Berechnen:', err);
