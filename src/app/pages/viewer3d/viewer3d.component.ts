@@ -17,7 +17,7 @@ export class Viewer3dComponent implements AfterViewInit, OnChanges {
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
   private renderer!: THREE.WebGLRenderer;
-  private cube!: THREE.Mesh;
+  private cube!: THREE.LineSegments;
   private controls!: OrbitControls;
 
   ngAfterViewInit(): void {
@@ -36,24 +36,31 @@ export class Viewer3dComponent implements AfterViewInit, OnChanges {
     const width = this.canvasRef.nativeElement.clientWidth;
     const height = this.canvasRef.nativeElement.clientHeight;
 
-    // 🌀 Scene, Camera, Renderer
+    // Szene & Kamera
     this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    this.camera.position.z = 5;
-    
-    // 🌀 Renderer
+    this.camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
+    this.camera.position.set(2, 2, 5);
+    this.camera.lookAt(0, 0, 0);
+
+    // Renderer
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.renderer.setSize(width, height);
+    this.renderer.setClearColor(0x000000); // Hintergrund schwarz
     this.canvasRef.nativeElement.appendChild(this.renderer.domElement);
 
-    // 🌀 Orbit Controls
+    // Licht: Ambient + Punktlicht
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4); // Grundhelligkeit
+    const pointLight = new THREE.PointLight(0xffffff, 0.9);
+    pointLight.position.set(5, 5, 5);
+
+    this.scene.add(ambientLight, pointLight);
+
+    // OrbitControls für Interaktion
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+    this.controls.enableDamping = true;
+    this.controls.dampingFactor = 0.1;
 
-    // 🌀 Licht
-    const light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(0, 1, 2);
-    this.scene.add(light);
-
+    // Test: Szene initial anzeigen (falls Form schon gesetzt ist)
     this.addShape();
   }
 
@@ -74,8 +81,13 @@ export class Viewer3dComponent implements AfterViewInit, OnChanges {
 
     if (!geometry) return; // ⛔ Wenn keine gültige Geometrie vorhanden ist, NICHTS machen
 
-    const material = new THREE.MeshStandardMaterial({ color: 0x44aa88 });
-    this.cube = new THREE.Mesh(geometry, material);
+    const wireframe = new THREE.WireframeGeometry(geometry);
+    const lineMaterial = new THREE.LineBasicMaterial({
+      color: 0x00ffcc,
+      transparent: true,
+      opacity: 0.5
+    });
+    this.cube = new THREE.LineSegments(wireframe, lineMaterial);
     this.scene.add(this.cube);
   }
 
@@ -84,7 +96,7 @@ export class Viewer3dComponent implements AfterViewInit, OnChanges {
 
     // ✅ Nur wenn eine Geometrie existiert, rotieren
     if (this.cube) {
-      this.cube.rotation.y += 0.01;
+      this.cube.rotation.y += 0.001;
     }
 
     this.renderer.render(this.scene, this.camera);
