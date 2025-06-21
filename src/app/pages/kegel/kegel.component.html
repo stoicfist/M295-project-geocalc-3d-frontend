@@ -19,3 +19,8 @@
   <p><strong>Volumen:</strong> {{ volume }}</p>
   <p><strong>Oberfläche:</strong> {{ surface }}</p>
 </div>
+
+<app-viewer3d *ngIf="show3D"
+  [shape]="'kegel'"
+  [parameters]="viewerParams">
+</app-viewer3d>

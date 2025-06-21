@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ShapeService } from '../../services/shape.service';
+import { Viewer3dComponent } from '../viewer3d/viewer3d.component';
 
 @Component({
   selector: 'app-kegel',
@@ -15,6 +16,7 @@ import { ShapeService } from '../../services/shape.service';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    Viewer3dComponent
   ],
   templateUrl: './kegel.component.html',
   styleUrls: ['./kegel.component.scss']
@@ -23,6 +25,8 @@ export class KegelComponent {
   form: FormGroup;
   volume: number | null = null;
   surface: number | null = null;
+  viewerParams: any = {};
+  show3D: boolean = false;
 
   constructor(private fb: FormBuilder, private shapeService: ShapeService) {
     this.form = this.fb.group({
@@ -36,9 +40,12 @@ export class KegelComponent {
       shapeType: 'kegel',
       parameters: {
         radius: this.form.value.radius,
-        hoehe: this.form.value.hoehe,
+        hoehe: this.form.value.hoehe
       }
     };
+
+    this.viewerParams = shapeRequest.parameters;
+    this.show3D = true;
 
     this.shapeService.calculate(shapeRequest).subscribe({
       next: (response) => {

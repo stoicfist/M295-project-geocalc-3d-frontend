@@ -23,7 +23,6 @@ export class Viewer3dComponent implements AfterViewInit, OnChanges {
   ngAfterViewInit(): void {
     this.initScene();
     this.animate();
-    // ❌ this.addShape();  // ← entfernt
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -36,31 +35,25 @@ export class Viewer3dComponent implements AfterViewInit, OnChanges {
     const width = this.canvasRef.nativeElement.clientWidth;
     const height = this.canvasRef.nativeElement.clientHeight;
 
-    // Szene & Kamera
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
     this.camera.position.set(2, 2, 5);
     this.camera.lookAt(0, 0, 0);
 
-    // Renderer
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.renderer.setSize(width, height);
-    this.renderer.setClearColor(0x000000); // Hintergrund schwarz
+    this.renderer.setClearColor(0x000000);
     this.canvasRef.nativeElement.appendChild(this.renderer.domElement);
 
-    // Licht: Ambient + Punktlicht
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4); // Grundhelligkeit
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
     const pointLight = new THREE.PointLight(0xffffff, 0.9);
     pointLight.position.set(5, 5, 5);
-
     this.scene.add(ambientLight, pointLight);
 
-    // OrbitControls für Interaktion
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.1;
 
-    // Test: Szene initial anzeigen (falls Form schon gesetzt ist)
     this.addShape();
   }
 
@@ -76,10 +69,10 @@ export class Viewer3dComponent implements AfterViewInit, OnChanges {
     } else if (this.shape === 'quader' && this.parameters?.a && this.parameters?.b && this.parameters?.c) {
       geometry = new THREE.BoxGeometry(this.parameters.a, this.parameters.b, this.parameters.c);
     } else if (this.shape === 'kegel' && this.parameters?.radius && this.parameters?.hoehe) {
-      geometry = new THREE.ConeGeometry(this.parameters.radius, this.parameters.hoehe, 32);
+      geometry = new THREE.ConeGeometry(this.parameters.radius, this.parameters.hoehe, 32, 1, true);
     }
 
-    if (!geometry) return; // ⛔ Wenn keine gültige Geometrie vorhanden ist, NICHTS machen
+    if (!geometry) return;
 
     const wireframe = new THREE.WireframeGeometry(geometry);
     const lineMaterial = new THREE.LineBasicMaterial({
@@ -94,11 +87,11 @@ export class Viewer3dComponent implements AfterViewInit, OnChanges {
   private animate = () => {
     requestAnimationFrame(this.animate);
 
-    // ✅ Nur wenn eine Geometrie existiert, rotieren
     if (this.cube) {
-      this.cube.rotation.y += 0.001;
+      this.cube.rotation.y += 0.01;
     }
 
+    this.controls.update();
     this.renderer.render(this.scene, this.camera);
   };
 }
