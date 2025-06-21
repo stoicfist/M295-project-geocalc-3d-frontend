@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ShapeService } from '../../services/shape.service';
+import { Viewer3dComponent } from '../viewer3d/viewer3d.component';
 
 @Component({
   selector: 'app-quader',
@@ -15,6 +16,7 @@ import { ShapeService } from '../../services/shape.service';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    Viewer3dComponent
   ],
   templateUrl: './quader.component.html',
   styleUrls: ['./quader.component.scss']
@@ -23,6 +25,9 @@ export class QuaderComponent {
   form: FormGroup;
   volume: number | null = null;
   surface: number | null = null;
+
+  viewerParams: any = {};
+  show3D = false;
 
   constructor(private fb: FormBuilder, private shapeService: ShapeService) {
     this.form = this.fb.group({
@@ -46,10 +51,13 @@ export class QuaderComponent {
       next: (response) => {
         this.volume = response.volume ?? null;
         this.surface = response.surface ?? null;
+
+        this.viewerParams = shapeRequest.parameters;
+        this.show3D = true;
       },
       error: (err) => {
         console.error('❌ Fehler beim Berechnen (Quader):', err);
       }
     });
-}
+  }
 }

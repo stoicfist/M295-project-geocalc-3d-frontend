@@ -24,3 +24,15 @@
   <p><strong>Volumen:</strong> {{ volume }}</p>
   <p><strong>Oberfläche:</strong> {{ surface }}</p>
 </div>
+
+<div *ngIf="volume !== null && surface !== null">
+  <p><strong>Volumen:</strong> {{ volume }}</p>
+  <p><strong>Oberfläche:</strong> {{ surface }}</p>
+</div>
+
+<div *ngIf="show3D">
+  <app-viewer3d
+    [shape]="'quader'"
+    [parameters]="viewerParams">
+  </app-viewer3d>
+</div>
