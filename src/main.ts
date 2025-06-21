@@ -17,7 +17,7 @@ bootstrapApplication(AppComponent, {
     provideAnimations(),
     importProvidersFrom(OAuthModule.forRoot({
       resourceServer: {
-        allowedUrls: ['http://localhost:9090/api'],
+        allowedUrls: ['/api'],
         sendAccessToken: true
       }
     }))
@@ -25,5 +25,5 @@ bootstrapApplication(AppComponent, {
 }).then(appRef => {
   const injector = appRef.injector;
   const auth = injector.get(AuthService);
-  auth.initAuth(); // Nur Discovery + Token-Check — KEIN Login!
+  auth.initAuth();
 });
