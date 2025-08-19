@@ -12,7 +12,7 @@ export const AuthGuard: CanActivateFn = async () => {
   }
 
   const dialog = inject(MatDialog);
-  const result = await dialog.open(SessionExpiredDialogComponent).afterClosed().toPromise();
+  const result = await firstValueFrom(dialog.open(SessionExpiredDialogComponent).afterClosed());
 
   if (result) {
     auth.login(); // ⬅️ Weiterleitung zu Keycloak
