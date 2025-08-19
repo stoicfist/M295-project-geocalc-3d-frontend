@@ -150,6 +150,99 @@ Hier kann der Benutzer je nach gewählter Figur die Parameter definieren. Sobald
 Das Dashboard zeigt dem Administrator eine Übersicht über alle Berechnungen, den Verlauf, eine Aufschlüsselung der genutzten Formen sowie eine Analyse der Aktivität über die Zeit.
 
 \newpage
+\section*{Erfahrungen, Probleme und Abweichungen}
 
+\subsection*{Technische Herausforderungen}
+Während der Umsetzung der 3D-Visualisierung mit Three.js sind einige technische Schwierigkeiten aufgetreten:
+\begin{itemize}
+  \item Die Darstellung eines 3D-Objekts reagierte nur zuverlässig mit einem Radiuswert von \texttt{1}. Größere oder kleinere Werte führten entweder zu unvollständiger Darstellung oder zum völligen Verschwinden des Objekts.
+  \item Trotz korrekter Übergabe der Parameter und Initialisierung der Szene in Angular wurde bei Änderungen der Eingabewerte das bestehende Objekt entfernt, aber nicht immer korrekt neu gerendert.
+  \item Im Viewer traten Fehler wie \texttt{Cannot read properties of undefined (reading 'rotation')} auf, da durch Angulars Lebenszyklusmethoden Objekte vorzeitig entfernt wurden. Dies verursachte eine Endlosschleife an Fehlern in der Konsole.
+  \item Die 3D-Komponente funktionierte in Kombination mit Angular Forms und der asynchronen Kommunikation (HTTP Requests) nicht wie ursprünglich geplant. Das Zusammenspiel mit dem Backend und die Übergabe von Parametern musste deutlich vereinfacht werden.
+\end{itemize}
+
+\subsection*{Abweichung vom Wireframe}
+Die ursprüngliche Skizze im Wireframe sah eine interaktive 3D-Vorschau vor, die in Echtzeit auf die Eingabewerte reagiert. Aufgrund der genannten Probleme konnte dieses Ziel nur teilweise erreicht werden:
+\begin{itemize}
+  \item Die Darstellung einer Kugel funktioniert aktuell ausschließlich bei einem Radiuswert von \texttt{1}.
+  \item Die Vorschau erscheint direkt unterhalb des Eingabeformulars (nur bei Kugel), allerdings mit interaktive Features (z.\,B. Drehen, Zoomen aber nur für Radius = 1).
+  \item Die Funktionalität für Kegel und Quader wurde zwar vorbereitet, konnte aber zeitbedingt nicht abgeschlossen werden.
+\end{itemize}
+
+\subsection*{Reflexion und Zeitmanagement}
+Da dieses Projekt im Rahmen des ÜK benotet wird und der Schwerpunkt auf dem Modul 294 (Frontend) liegt, musste ich mich auf funktionale Kernbereiche konzentrieren:
+\begin{itemize}
+  \item Authentifizierung mit Keycloak, Routing, HTTP-Kommunikation mit Backend sowie die vollständige Admin-Ansicht wurden erfolgreich umgesetzt.
+  \item Die vollständige 3D-Unterstützung war ursprünglich geplant, konnte aber wegen der Komplexität (und Zeitknappheit) nicht komplett integriert werden.
+  \item Ich habe mich entschieden, Funktionalität und Codequalität zu priorisieren, anstatt mich in zu tiefgehende visuelle Details zu verlieren.
+\end{itemize}
+
+\newpage
+
+\section*{Screenshots der Applikation}
+
+\vspace{1cm}
+\noindent\textbf{Login-Seite mit Keycloak:}
+\\ Die Einstiegsseite bietet eine einfache Möglichkeit, sich über den Button mit dem Keycloak-Server zu authentifizieren.
+\vspace{0.3cm}
+\begin{center}
+  \includegraphics[width=0.8\textwidth]{./bilder/login.png}
+\end{center}
+
+\vspace{1cm}
+\noindent\textbf{Dashboard (Admin):}
+\\ Nach erfolgreichem Login landet der Nutzer auf dem Start-Dashboard. Von hier aus können Figuren gewählt oder zum Adminbereich gewechselt werden.
+\vspace{0.3cm}
+\begin{center}
+  \includegraphics[width=0.8\textwidth]{./bilder/dashboard.png}
+\end{center}
+
+\newpage
+\vspace{1cm}
+\noindent\textbf{Admin-Dashboard mit Verlauf, Graph und Torten-Diagramm:}
+\\ Der Admin sieht eine Übersicht über alle bisherigen Berechnungen, gruppiert nach Benutzer und Figur. Zusätzlich gibt es zwei Diagramme: die Verteilung der Formen (Tortendiagramm) und eine Aktivitätsanalyse über die Zeit (Liniendiagramm).
+\vspace{0.3cm}
+\begin{center}
+  \includegraphics[width=0.8\textwidth]{./bilder/admin-dashboard.png}
+\end{center}
+
+\vspace{1cm}
+\noindent\textbf{Berechnung Quader mit gültigen Werten:}
+\\ Beispiel einer gültigen Eingabe für einen Quader. Die Oberfläche und das Volumen werden korrekt berechnet und direkt unterhalb angezeigt.
+\vspace{0.3cm}
+\begin{center}
+  \includegraphics[width=0.8\textwidth]{./bilder/quader.png}
+\end{center}
+
+\vspace{1cm}
+\noindent\textbf{Kegel mit negativer Eingabe (Fehlerfall):}
+\\ Hier wird der Berechnungsknopf automatisch deaktiviert, wenn ungültige Werte wie negative Zahlen eingegeben werden. Dies verhindert unlogische Serveranfragen.
+\vspace{0.3cm}
+\begin{center}
+  \includegraphics[width=0.5\textwidth]{./bilder/illegal.png}
+\end{center}
+
+\newpage
+\vspace{1cm}
+\noindent\textbf{Kegel mit grossen Werten:}
+\\ Ein Beispiel mit sehr großen Parametern. Das System berechnet auch extreme Werte korrekt.
+\vspace{0.3cm}
+\begin{center}
+  \includegraphics[width=0.5\textwidth]{./bilder/kegel.png}
+\end{center}
+
+\vspace{1cm}
+\noindent\textbf{Kugel mit Radius 1 – 3D korrekt dargestellt:}
+\\ Sobald der Benutzer einen Radius von genau \texttt{1} eingibt, wird die 3D-Darstellung korrekt gerendert. Die Darstellung ist interaktiv:
+\begin{itemize}
+  \item Die Kugel beginnt automatisch zu rotieren, sobald sie erscheint.
+  \item Per Maus kann die Kugel zusätzlich gedreht werden.
+  \item Auch das Zoomen mit dem Mausrad wird unterstützt (dank \texttt{OrbitControls}).
+  \item Der Benutzer bekommt so ein anschauliches Feedback zur eingegebenen Geometrie.
+\end{itemize}
+\vspace{0.3cm}
+\begin{center}
+  \includegraphics[width=0.3\textwidth]{./bilder/kugel.png}
+\end{center}
 
 \end{document}

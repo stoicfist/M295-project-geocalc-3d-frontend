@@ -1,0 +1,32 @@
+<div class="form-wrapper">
+  <h2>Kugel</h2>
+
+  <form [formGroup]="form" (ngSubmit)="berechnen()">
+    <mat-form-field appearance="fill">
+      <mat-label>Radius (r)</mat-label>
+      <input matInput type="number" formControlName="radius" required />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+      Berechnen
+    </button>
+  </form>
+
+<div *ngIf="volume !== null && surface !== null">
+  <p><strong>Volumen:</strong> {{ volume }}</p>
+  <p><strong>Oberfläche:</strong> {{ surface }}</p>
+</div>
+
+<div *ngIf="result">
+  <p><strong>Volumen:</strong> {{ result.volume }}</p>
+  <p><strong>Oberfläche:</strong> {{ result.surface }}</p>
+</div>
+
+<!-- 🔽 Hier 3D-Vorschau anzeigen -->
+<app-viewer3d
+  *ngIf="show3D"
+  [shape]="'kugel'"
+  [parameters]="viewerParams">
+</app-viewer3d>
+
+</div>

@@ -1,0 +1,45 @@
+.admin-dashboard-container {
+  padding: 2rem;
+  color: white;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.dashboard-card {
+  background: #1f1f1f;
+  color: white;
+  padding: 1rem;
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+.zurueck-button {
+  margin-top: 2rem;
+  text-align: center;
+
+  button {
+    color: #00e0ff;
+  }
+}
+
+.verlauf-tabelle {
+  width: 100%; // größer
+  table-layout: auto;
+
+  th, td {
+    padding: 0.5rem 1rem;
+    text-align: left;
+    vertical-align: top;
+    white-space: nowrap; // verhindert Zeilenumbruch
+  }
+
+  td:nth-child(3) { // Parameter
+    white-space: normal;
+  }
+}

@@ -1,0 +1,38 @@
+<h2>Quader berechnen</h2>
+<form [formGroup]="form" (ngSubmit)="berechnen()">
+  <mat-form-field appearance="fill">
+    <mat-label>Länge (a)</mat-label>
+    <input matInput type="number" formControlName="a" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Breite (b)</mat-label>
+    <input matInput type="number" formControlName="b" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Höhe (c)</mat-label>
+    <input matInput type="number" formControlName="c" required />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+    Berechnen
+  </button>
+</form>
+
+<div *ngIf="volume !== null && surface !== null">
+  <p><strong>Volumen:</strong> {{ volume }}</p>
+  <p><strong>Oberfläche:</strong> {{ surface }}</p>
+</div>
+
+<div *ngIf="volume !== null && surface !== null">
+  <p><strong>Volumen:</strong> {{ volume }}</p>
+  <p><strong>Oberfläche:</strong> {{ surface }}</p>
+</div>
+
+<div *ngIf="show3D">
+  <app-viewer3d
+    [shape]="'quader'"
+    [parameters]="viewerParams">
+  </app-viewer3d>
+</div>
