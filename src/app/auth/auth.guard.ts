@@ -3,6 +3,7 @@ import { inject } from '@angular/core';
 import { AuthService } from './auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SessionExpiredDialogComponent } from '../components/session-expired-dialog/session-expired-dialog.component';
+import { firstValueFrom } from 'rxjs';
 
 export const AuthGuard: CanActivateFn = async () => {
   const auth = inject(AuthService);
